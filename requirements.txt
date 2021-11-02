@@ -1,3 +1,4 @@
+ffmpeg-python~=0.2.0
 jiwer~=2.2.0
-numpy~=1.17.0
+numpy~=1.19.0
 stt~=1.0.0
