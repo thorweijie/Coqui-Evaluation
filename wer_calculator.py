@@ -98,6 +98,13 @@ def process_audio(audio):
     return processed_audio
 
 
+def row_count(dir):
+    with open(dir, newline="") as csv_file:
+        reader = csv.DictReader(csv_file)
+        total_rows = sum(1 for row in reader)
+    return total_rows
+
+
 # Create output csv file, read input csv file and write to output csv file
 def process_csv(dir):
     if not path.isfile(dir):
@@ -125,6 +132,8 @@ def process_csv(dir):
 
         with open(dir, newline="") as clips_csv:
             reader = csv.DictReader(clips_csv)
+            total_rows = row_count(dir)
+            processed_counter = 0
             for row in reader:
                 transcript = row["transcript"]
                 contains_product = True if row["contains_product"] == "Y" else False
@@ -143,7 +152,6 @@ def process_csv(dir):
                 text = model.stt(audio)
                 writer.writerow(
                     {
-                        "filename": f"{filename}",
                         "transcript": f"{transcript}",
                         "coqui": f"{text}",
                         "contains_product": "Y" if contains_product else "N",
@@ -152,21 +160,25 @@ def process_csv(dir):
                 hypothesis_products.append(
                     text
                 ) if contains_product else hypothesis_non_products.append(text)
+                processed_counter += 1
+                print(f"Clip {processed_counter} of {total_rows} processed")
 
-    if ground_truth_products and hypothesis_products:
-        wer_products = calculate_wer(ground_truth_products, hypothesis_products)
-        print(f"WER (products): {wer_products}")
-    if ground_truth_non_products and hypothesis_non_products:
-        wer_non_products = calculate_wer(
-            ground_truth_non_products, hypothesis_non_products
+        if ground_truth_products and hypothesis_products:
+            wer_products = calculate_wer(ground_truth_products, hypothesis_products)
+            print(f"WER (products): {wer_products}")
+        if ground_truth_non_products and hypothesis_non_products:
+            wer_non_products = calculate_wer(
+                ground_truth_non_products, hypothesis_non_products
+            )
+            print(f"WER (non-products): {wer_non_products}")
+        writer.writerow(
+            {
+                "WER (products)": f"{wer_products}" if wer_products else None,
+                "WER (non-products)": f"{wer_non_products}"
+                if wer_non_products
+                else None,
+            }
         )
-        print(f"WER (non-products): {wer_non_products}")
-    writer.writerow(
-        {
-            "WER (products)": f"{wer_products}" if wer_products else None,
-            "WER (non-products)": f"{wer_non_products}" if wer_non_products else None,
-        }
-    )
 
 
 def main():
