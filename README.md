@@ -10,8 +10,8 @@ csv file are provided.
 ### Using the script
 
 1. Git clone the repository
-2. Download and install [ffmpeg] (https://www.ffmpeg.org/download.html)
-3. Download the [acoustic model] (https://github.com/coqui-ai/STT-models/releases/download/english/coqui/v0.9.3/model.tflite) and [language model] (https://github.com/coqui-ai/STT-models/releases/download/english/coqui/v0.9.3/coqui-stt-0.9.3-models.scorer) files for CoquiSTT and place it in the cloned repository
+2. Download and install [ffmpeg](https://www.ffmpeg.org/download.html)
+3. Download the [acoustic model](https://github.com/coqui-ai/STT-models/releases/download/english/coqui/v0.9.3/model.tflite) and [language model](https://github.com/coqui-ai/STT-models/releases/download/english/coqui/v0.9.3/coqui-stt-0.9.3-models.scorer) files for CoquiSTT and place it in the cloned repository
 4. Create a venv using python -m venv venv
 5. Enter venv using venv\scripts\activate (Windows) or source venv/bin/activate (Linux)
 6. Run pip install -r requirements.txt
