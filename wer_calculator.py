@@ -33,7 +33,7 @@ from csv_processor import CsvProcessor
 
 def main():
     # Start CoquiSTT
-    model_path = "coqui-stt-0.9.3-models.tflite"
+    model_path = "model.tflite"
     scorer_path = "coqui-stt-0.9.3-models.scorer"
     model = stt.Model(model_path)
     model.enableExternalScorer(scorer_path)
