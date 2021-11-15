@@ -147,10 +147,10 @@ class CsvProcessor:
             writer.writerow(
                 {
                     "WER (products)": f"{self.wer_products}"
-                    if self.wer_products
+                    if self.wer_products is not None
                     else None,
                     "WER (non-products)": f"{self.wer_non_products}"
-                    if self.wer_non_products
+                    if self.wer_non_products is not None
                     else None,
                 }
             )
