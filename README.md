@@ -35,5 +35,5 @@ The csv file requires the following columns of data:
 4. HEX(audio): WAV blob data saved as a hexadecimal string
   (only required if audio data is provided in the form of WAV blob)
 
-The csv file should be named "clips.csv" or "blob.csv" based on the type
+The csv file should be named `clips.csv` or `blob.csv` based on the type
 of audio data provided (audio files/WAV blob).
