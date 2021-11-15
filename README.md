@@ -2,8 +2,9 @@
 
 This directory processes a csv file containing transcripts of audio clips and the audio data,
 generating a csv file that contains the original transcript, the transcript produced by
-passing the audio data to CoquiSTT, and the word error rate (WER). Sample audio data and
-csv file are provided.
+passing the audio data to CoquiSTT speech-to-text engine, and the word error rate (WER). The 
+results can be used to evaluate the effectiveness of the model used for CoquiSTT. Sample audio
+data and csv file are provided.
 
 ## Usage
 
