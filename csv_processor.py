@@ -25,7 +25,7 @@ def calculate_wer(ground_truth, hypothesis):
     return result
 
 
-# Convert audio to 16kHz sampling rate and 16-bit bit depth
+# Convert audio to 16kHz sampling rate, 16-bit bit depth and mono channel
 def normalize_audio(audio):
     out, err = (
         ffmpeg.input("pipe:0")
